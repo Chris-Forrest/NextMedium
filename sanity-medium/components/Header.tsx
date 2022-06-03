@@ -5,7 +5,9 @@ export default function Header() {
     <header>
         <div>
             <Link href="/">
-                <img  src="https://links.papareact.com/yvf"/>
+                <img  
+                   className='w-44 object container cursor-pointer'
+                   src="https://links.papareact.com/yvf"/>
 
             </Link>
         </div>
