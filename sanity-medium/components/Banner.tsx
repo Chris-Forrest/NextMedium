@@ -1,4 +1,5 @@
-
+import m from '../public/images/Medium-logo.png'
+import Image from 'next/image';
 
 export default function Banner() {
   return (
@@ -15,9 +16,9 @@ export default function Banner() {
             </h2>
         </div>
 
-        <img className="hidden md:inline-flex h-32 lg:h-full"
-         src="https://accountabilitylab.org/wp-content
-         /uploads/2020/03/Medium-logo.png"/>
+        <Image className='hidden md:inline-flex h-32 lg:h-full'
+               src={m}
+        />
 
     </div>
   );
