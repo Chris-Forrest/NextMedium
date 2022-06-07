@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
-import Posts from '../components/Posts';
-import { sanityClient, } from '../sanity';
+import PostComponent from '../components/Posts';
+import { sanityClient, urlFor } from '../sanity';
 import { Post } from "../typeings";
+import Link from 'next/link';
 
 interface Props {
   posts: [Post];
@@ -22,7 +23,16 @@ export default function Home({ posts }: Props) {
 
       <Banner />
       
-      <Posts />
+      {/*<PostComponent  />*/}
+      <div>
+        {posts.map((post) => (
+          <Link key={post._id} href={`/posts/${post.slug.current}`}>
+            <img src={
+            urlFor(post.mainImage).url()!
+          } alt=""/>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
