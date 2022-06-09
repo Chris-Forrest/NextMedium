@@ -27,9 +27,18 @@ export default function Home({ posts }: Props) {
       <div>
         {posts.map((post) => (
           <Link key={post._id} href={`/posts/${post.slug.current}`}>
-            <img src={
-            urlFor(post.mainImage).url()!
-          } alt=""/>
+            <div>
+                <img src={
+                urlFor(post.mainImage).url()!
+              } alt="description of picture"/>
+              <div>
+                <div>
+                  <p>{post.title}</p>
+                  <p>{post.description} by {post.author.name}</p>
+                </div>
+                <img src={urlFor(post.author.image).url()!} alt=""/>
+              </div>
+            </div>
           </Link>
         ))}
       </div>
