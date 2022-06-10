@@ -10,35 +10,41 @@ interface Props {
 function Post({ post }: Props) {
     console.log(post)
     return(
-        <div>
+        <main>
             <h1>This should work</h1>
          <Header />
-        </div>
+        </main>
     )
 }
 
 export default Post;
 
-export const getStaticPaths =async () => {
+export const getStaticPaths = async () => {
     const query = `*[_type == "post"]{
         _id,
         slug {
             current
         }
     }`;
-
-    const posts = await sanityClient.fetch(query);
-
+   
+    const posts = await sanityClient.fetch(query)
+ /*
     const paths = posts.map((post: Post) => ({
         params: {
             slug: post.slug.current,
         },
     }));
-
+*/
     return {
-        paths,
-        fallback:"blocking",
+        paths: posts.map((post: Post) => ({
+            params: {
+                slug: post.slug.current,
+            },
+        })),
+        fallback: true,
     };
+    
+
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
